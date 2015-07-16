@@ -1,0 +1,22 @@
+{
+  "name": "estn-door-hanger-map",
+  "version": "0.0.0",
+  "authors": [
+    "bchiatt <bchiatt@outlook.com>"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "foundation": "~5.5.2",
+    "jquery": "~2.1.4",
+    "modernizr": "~2.8.3"
+  }
+}

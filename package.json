@@ -1,0 +1,11 @@
+{
+  "name": "estn-door-hanger-map",
+  "version": "1.0.0",
+  "description": "Map for entering and displaying locations ESTN door hangers have been placed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Hiatt <bchiatt@outlook.com>",
+  "license": "MIT"
+}
