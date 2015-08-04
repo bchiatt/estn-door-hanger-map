@@ -1,2 +1,6 @@
-bower_components/
+public/bower_components/
 .idea/
+.DS_Store
+
+//Parse App Keys Are In Here
+config/

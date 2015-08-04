@@ -3,6 +3,9 @@
  */
 (function(){
   angular.module('app', [])
+    .config(function(){
+      Parse.initialize("PZcpum1JTjXFPn9h8fSyC8cO845QGPpv7czvwhhe", "F0GxmMetxbMFW0HkAIQNzKOWe0hebtqU50mRC3Z2");
+    })
     .controller('mapController', mapController);
 
   function mapController(){
@@ -66,10 +69,17 @@
     }
 
     function savePoly() {
-      vm.paths.push(vm.poly.getPath().j);
-      vm.poly.setMap(null);
-      vm.poly = null;
-      drawPolylines(map);
+      var Report = Parse.Object.extend("Report");
+      var report = new Report();
+      var points = vm.poly.getPath().j;
+      console.log(points);
+      report.save({points: points, data: true}).then(function(object) {
+        vm.paths.push(points);
+        vm.poly.setMap(null);
+        vm.poly = null;
+        drawPolylines(map);
+        //$scope.$apply();
+      });
     }
   }
 }());
