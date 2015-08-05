@@ -1,8 +1,12 @@
-/**
- * Created by bchiatt on 7/15/15.
- */
+/* globals Parse, google */
+
 (function(){
+  'use strict';
+
   angular.module('app', [])
+    .config(function(){
+      Parse.initialize('PZcpum1JTjXFPn9h8fSyC8cO845QGPpv7czvwhhe', 'F0GxmMetxbMFW0HkAIQNzKOWe0hebtqU50mRC3Z2');
+    })
     .controller('mapController', mapController);
 
   function mapController(){
@@ -15,31 +19,31 @@
     vm.savePoly = savePoly;
 
     var mapOptions = {
-      center: { lat: 36.2, lng: -86.7},
-      zoom: 11
-    };
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+          center: {lat: 36.2, lng: -86.7},
+          zoom: 11
+        },
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    function addLatLng(event) {
+    function addLatLng(event){
       if(!vm.poly){ return; }
       var path = vm.poly.getPath();
-      path.push(event.latLng)
+      path.push(event.latLng);
     }
 
-    function clearAllPolyLines() {
+    function clearAllPolyLines(){
       angular.forEach(vm.polylines, function(poly){
         poly.setMap(null);
       });
       vm.polylines = [];
     }
 
-    function clearPoly() {
+    function clearPoly(){
       vm.poly.setMap(null);
       vm.poly = null;
       drawPolylines(map);
     }
 
-    function drawPolylines(thisMap) {
+    function drawPolylines(thisMap){
       angular.forEach(vm.paths, function(path){
         var line = new google.maps.Polyline({
           path: path,
@@ -52,7 +56,7 @@
       });
     }
 
-    function initPoly() {
+    function initPoly(){
       clearAllPolyLines();
       var polyOptions = {
         strokeColor: '#000000',
@@ -65,11 +69,17 @@
       vm.poly.setMap(map);
     }
 
-    function savePoly() {
-      vm.paths.push(vm.poly.getPath().j);
-      vm.poly.setMap(null);
-      vm.poly = null;
-      drawPolylines(map);
+    function savePoly(){
+      var Report = Parse.Object.extend('Report'),
+          report = new Report(),
+          points = vm.poly.getPath().j;
+      console.log(points);
+      report.save({points: points, data: true}).then(function(object){
+        vm.paths.push(points);
+        vm.poly.setMap(null);
+        vm.poly = null;
+        drawPolylines(map);
+      });
     }
   }
 }());

@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='vendor/foundation/css/foundation.min.css')
+    link(rel='stylesheet' href='vendor/foundation/css/normalize.min.css')
+    link(rel='stylesheet' href='main.css')
+    script(src='vendor/parse-js-sdk/lib/parse.js')
+    script(src='vendor/jquery/dist/jquery.min.js')
+    script(src='vendor/modernizr/modernizr.js')
+    script(src='vendor/foundation/js/foundation.min.js')
+    script(src='vendor/angular/angular.min.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC5LxmxbjYQoaPFxvw_sLhQZ-F60oYvrVk&libraries=drawing')
+    script(src='index.js')
+
+  body(ng-app='app' ng-controller='mapController as mapCtrl')
+    #map-controls
+        .button.radius(ng-hide='mapCtrl.poly' ng-click='mapCtrl.initPoly()') Mark Roads
+        .button.alert.radius(ng-show='mapCtrl.poly' ng-click='mapCtrl.savePoly()') Save Marks
+        .button.warning.radius(ng-show='mapCtrl.poly' ng-click='mapCtrl.clearPoly()') Clear Marks
+
+    #map-canvas
+
+    #map-form

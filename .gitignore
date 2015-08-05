@@ -1,2 +1,6 @@
-bower_components/
 .idea/
+.DS_Store
+
+config/
+public/
+node_modules/
