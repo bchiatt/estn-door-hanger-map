@@ -1,0 +1,9 @@
+div(ng-app='app' ng-controller='mapController as mapCtrl')
+   #map-controls
+      .button.radius(ng-hide='mapCtrl.poly' ng-click='mapCtrl.initPoly()') Mark Roads
+      .button.alert.radius(ng-show='mapCtrl.poly' ng-click='mapCtrl.savePoly()') Save Marks
+      .button.warning.radius(ng-show='mapCtrl.poly' ng-click='mapCtrl.clearPoly()') Clear Marks
+
+   #map-canvas
+
+   #map-form
